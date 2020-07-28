@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div id ='cartItem' class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id='minus1' class="btn btn-default"><i class="fas fa-minus"  ></i></button>
+                           <input id="input" type="text" class="form-control text-center" value= "0">
+                           <button id='plus1' class="btn btn-default"><i class="fas fa-plus" ></i></button>
+                        </div>
+                        <h5>$<span id="phone">00</span></h5>
+                        <img id = 'remove1' src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick='caseAmount(true)' class="btn btn-default"><i class="fas fa-minus" ></i></button>
+                           <input id = 'input2' type="text" class="form-control text-center" value="0">
+                           <button onclick='caseAmount(false)' class="btn btn-default"><i class="fas fa-plus" ></i></button>
+
+                        </div>
+                        <h5>$ <span id='case'>00</span> </h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id='subTotal'>00</span></h5>
+                        <h5>$ <span id='tax'>0</span></h5>
+                        <h5>$ <span id = 'totalAmount'>00</span> </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+
+      document.getElementById('plus1').addEventListener('click' , function(){
+
+   phoneIncrease(true)
+      });
+      document.getElementById('minus1').addEventListener('click', function(){
+         phoneIncrease(false)
+      })
+      function phoneIncrease (isIncrease){
+         var phoneInput = document.getElementById('input')
+         var phoneCount=parseFloat(phoneInput.value);
+         var phoneNewCount= phoneCount
+         if ( isIncrease == false && phoneNewCount > 0){
+            phoneNewCount = phoneCount - 1
+         }
+         if(isIncrease == true){
+            phoneNewCount = phoneCount + 1
+         }
+         phoneInput.value = phoneNewCount
+         var phoneTotal = phoneNewCount * 1219
+         document.getElementById('phone').innerText = phoneTotal;
+         totalCount()
+      }
+
+     
+
+         
+      
+      function caseAmount(ifDecrease){
+         var caseInput = document.getElementById('input2')
+         var caseInputCount = parseFloat(caseInput.value)
+         var caseNewCount = caseInputCount 
+         if(ifDecrease == true && caseNewCount > 0){
+            caseNewCount = caseInputCount -1
+         }
+         else if(ifDecrease == false ){
+            caseNewCount = caseInputCount + 1
+         }
+         caseInput.value = caseNewCount
+         caseTotal = caseNewCount * 59
+         document.getElementById('case').innerText = caseTotal
+         totalCount()
+      }
+
+      function totalCount(){
+         var phonePrice = document.getElementById('input');
+         var totalPhone = parseInt(phonePrice.value)
+
+         var casePrice = document.getElementById('input2');
+         var totalCase = parseInt(casePrice.value)
+         
+         var subTotal = totalPhone * 1219 + totalCase * 59
+         document.getElementById('subTotal').innerText = subTotal
+
+         var tax =document.getElementById('tax')
+         var totalTax = parseInt(tax.innerText)
+         var taxAmount= (subTotal * .04).toFixed(2)
+         document.getElementById('tax').innerText = taxAmount
+         var forTotal = parseFloat(subTotal)
+         var forTax = parseInt(taxAmount)
+         var totalAmount = forTotal + forTax
+         document.getElementById('totalAmount').innerText = totalAmount
+
+      }
+
+
+
+
+
+
+
+
+
+
+//     //    firstPart for plus
+//        document.getElementById('plus1').addEventListener('click',function(){
+//             var phoneQuantity = document.getElementById('input').value
+//             var phoneNumber =parseInt(phoneQuantity)
+//                 var phoneNumber = phoneNumber + 1
+//             document.getElementById('input').value = phoneNumber
+//        var phone= document.getElementById('phone').innerText
+//         var phonePrice = parseInt(phone)
+//             phonePrice1 = phonePrice + 1219
+//             document.getElementById('phone').innerText = phonePrice1
+         
+//         //  for increase
+//           var subTotal = document.getElementById('subTotal').innerText
+//                 subTotal =parseInt(subTotal)
+//             var grandSub =   phonePrice1
+
+          
+//             document.getElementById('subTotal').innerText = grandSub
+           
+//             var tax = document.getElementById('tax').innerText
+//             var taxNumber = grandSub * .004
+//             var taxAmount2 = taxNumber.toFixed(1)
+//             document.getElementById('tax').innerText = taxAmount2;
+            
+
+//             var totalAmount= document.getElementById('totalAmount').innerText
+//             document.getElementById('totalAmount').innerText
+//             grandSub=parseFloat(grandSub)
+//             taxAmount2=parseFloat(taxAmount2)
+//                 lastAmount = grandSub + taxAmount2
+//             document.getElementById('totalAmount').innerText= lastAmount
+
+
+      
+//        })
+//             // for Minus////////
+//             document.getElementById('minus1').addEventListener('click',function(){
+//             var phoneQuantity = document.getElementById('input').value
+//             var phoneNumber =parseInt(phoneQuantity)
+//                 var phoneNumber = phoneNumber  - 1
+//             document.getElementById('input').value = phoneNumber
+//        var phone= document.getElementById('phone').innerText
+//         var phonePrice = parseInt(phone)
+//             phonePrice = phonePrice - 1219
+//             document.getElementById('phone').innerText = phonePrice
+//             var phone= document.getElementById('phone').innerText
+//         var phonePrice = parseInt(phone)
+//             phonePrice1 = phonePrice + 1219
+//             var subTotal = document.getElementById('subTotal').innerText
+//                 subTotal =parseInt(subTotal)
+//             var grandSub =   phonePrice1 - 1219
+
+//             // 
+//             // for decrease
+//             document.getElementById('subTotal').innerText = grandSub
+
+//             var tax = document.getElementById('tax').innerText
+//             var taxNumber = grandSub * .004
+//             var taxAmount = taxNumber.toFixed(1)
+//             document.getElementById('tax').innerText = taxAmount;
+           
+           
+//             document.getElementById('totalAmount').innerText
+//             grandSub=parseFloat(grandSub)
+//             taxAmount=parseFloat(taxAmount)
+//                 lastAmount2 = grandSub - taxAmount
+//             document.getElementById('totalAmount').innerText= lastAmount2
+//             })
+
+//             //secondPart Plus
+//             document.getElementById('plus2').addEventListener('click',function(){
+//             var phoneQuantity = document.getElementById('input2').value
+//             var phoneNumber =parseInt(phoneQuantity)
+//                 var phoneNumber = phoneNumber + 1
+//             document.getElementById('input2').value = phoneNumber
+//        var phone= document.getElementById('case').innerText
+//         var phonePrice = parseInt(phone)
+//             phonePrice = phonePrice + 59
+//             document.getElementById('case').innerText = phonePrice
+//         var subTotalForCase= document.getElementById('subTotal').innerText
+//          var   caseSubNumber = parseFloat(subTotalForCase)
+//           var totalWithPhone = caseSubNumber + 59
+//           document.getElementById('subTotal').innerText = totalWithPhone
+
+
+//          var tax = document.getElementById('tax').innerText
+//             var taxNumber = totalWithPhone * .004
+//             var taxAmount2 = taxNumber.toFixed(1)
+//             document.getElementById('tax').innerText = taxAmount2;
+            
+
+//             var totalAmount= document.getElementById('totalAmount').innerText
+//             document.getElementById('totalAmount').innerText
+//             grandSub=parseFloat(totalWithPhone)
+//             taxAmount2=parseFloat(taxAmount2)
+//                 lastAmount = grandSub + taxAmount2 
+//             document.getElementById('totalAmount').innerText= lastAmount
+
+
+
+//       })
+//             //secondPart for minus
+//             document.getElementById('minus2').addEventListener('click',function(){
+//             var phoneQuantity = document.getElementById('input2').value
+//             var phoneNumber =parseInt(phoneQuantity)
+//                 var phoneNumber = phoneNumber  - 1
+//             document.getElementById('input2').value = phoneNumber
+//        var phone= document.getElementById('case').innerText
+//         var phonePrice = parseInt(phone)
+//             phonePrice = phonePrice - 59
+//             document.getElementById('case').innerText = phonePrice
+//             var subTotalForCase= document.getElementById('subTotal').innerText
+//          var   caseSubNumber = parseFloat(subTotalForCase)
+//           var totalWithPhone = caseSubNumber - 59
+//           document.getElementById('subTotal').innerText = totalWithPhone
+
+
+
+//           var tax = document.getElementById('tax').innerText
+//             var taxNumber = totalWithPhone * .004
+//             var taxAmount = taxNumber.toFixed(1)
+//             document.getElementById('tax').innerText = taxAmount;
+           
+           
+//             document.getElementById('totalAmount').innerText
+//             grandSub=parseFloat(grandSub)
+//             taxAmount=parseFloat(taxAmount)
+//                 lastAmount2 = grandSub - taxAmount
+//             document.getElementById('totalAmount').innerText= totalWithPhone
+
+//  })
+//        document.getElementById('remove1').addEventListener('click',function(){
+//         var cart =  document.getElementById('cartItem')
+//         cart.style.display='none'
+         
+
+//        })
+    
+
+
+   </script>
+</body>
+
+</html>

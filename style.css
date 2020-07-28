@@ -1,0 +1,40 @@
+body{
+    background-image: url('images/boi.png');
+    background-position: cover;
+}
+
+
+.container{
+    position:absolute;
+    top : 30%;
+    left: 30%;
+    background-color: #da9412;
+    
+    height: 400px;
+    width:400px;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgb(0, 0, 0);
+    
+}
+.button{
+    padding: 20px ;
+    font-size: 30px;
+    margin: 5px;
+    height:70px;
+    width:70px;
+    position: relative;
+    left: 20px;
+    font-family: cooper black;
+ }
+ #input{
+     width: 400px;
+     height:60px;
+     font-size: 40px;
+     border-radius: 20px;
+     position: relative;
+     right: 14px;
+     font-weight: 700;
+     
+ }
+ 
